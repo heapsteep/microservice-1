@@ -18,10 +18,12 @@ public class GreetingController {
 	@Value("${server.port}")
 	private String port;
 
+	@Value("${greeting.message-suffix}")
+	private String messageSuffix;
+
 	@GetMapping("/{name}")
 	public GreetingResponse getGreeting(@PathVariable String name) {
 		log.info("Received greeting request for name={}", name);
-		return new GreetingResponse(name, "Hello " + name + ", response from microservice-1 from port: " + port);
+		return new GreetingResponse(name, "Hello " + name + ", " + messageSuffix + " from port: " + port);
 	}
-
 }
